@@ -1,0 +1,346 @@
+/* Full-screen carousel styles */
+        .carousel {
+            height: 100vh;
+            max-height: 800px;
+            overflow: hidden;
+        }
+        
+        .carousel-inner, 
+        .carousel-item {
+            height: 100%;
+        }
+        
+
+/*  heading ki css */
+/* Added heading styles to match your theme */
+        .section-heading {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px 0;
+            position: relative;
+        }
+        
+        .section-heading h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #e60023; 
+            text-shadow: 1px 1px 0 #c5001e,
+                         2px 2px 0 #a30018,
+                         3px 3px 0 #820012;
+            margin-bottom: 15px;
+        }
+        
+        .section-heading p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.253);
+        }
+        
+        .section-heading::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #e60023;
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+
+
+
+
+/* cards css */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Center cards for better responsive layout */
+}
+
+.card {
+  background-color: #121212;
+  color: #ffffff;
+  border: 1px solid #ff0000;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+  width: 100%; 
+  max-width: 300px; 
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Image container zoom effect */
+.card-img-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Zoom effect on hover/touch */
+.card:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  color: #ff4d4d;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #dddddd;
+  margin-bottom: 15px;
+}
+
+.card .btn-primary {
+  background-color: #ff0000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.card .btn-primary:hover {
+  background-color: #cc0000;
+  transform: translateY(-2px);
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(255, 0, 0, 0.6);
+}
+
+/* Responsive breakpoints */
+@media (min-width: 576px) {
+  .card {
+    width: calc(50% - 20px); 
+  }
+}
+
+@media (min-width: 992px) {
+  .card {
+    width: calc(33.33% - 20px); 
+  }
+}
+
+
+@media (hover: none) {
+  .card:active .card-img-top {
+    transform: scale(1.1);
+  }
+}
+
+
+ /* Restored your original heading style exactly */
+    .section-heading {
+      text-align: center;
+      margin: 50px 0 30px;
+    }
+
+    /* Professional Card Styling - Red & Black Theme */
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      padding: 20px 0;
+    }
+    
+    .product-card {
+      width: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(255, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      background: #121212;
+      border: 1px solid #ff0000;
+      margin-bottom: 30px;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(255, 0, 0, 0.3);
+      border-color: #ff3333;
+    }
+    
+    .card-img-container {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .card-img-top {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+    
+    .card-body {
+      padding: 20px;
+      color: #fff;
+    }
+    
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    
+    .card-text {
+      color: #ccc;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    
+    .price {
+      font-weight: 700;
+      color: #ff0000;
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+    
+    .btn-details {
+      background: linear-gradient(135deg, #e60023, #8e0032);
+      border: none;
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      color: white;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-details:hover {
+      background: linear-gradient(135deg, #c3001d, #660022);
+      transform: translateY(-2px);
+    }
+    
+    /* Modal Styling - Red & Black Theme */
+    .modal-content {
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #121212;
+      color: #fff;
+      border: 1px solid #ff0000;
+    }
+    
+    .modal-header {
+      background: linear-gradient(135deg, #e60023, #8e0032);
+      color: white;
+      border-bottom: 1px solid #ff0000;
+    }
+    
+    .modal-title {
+      font-weight: 600;
+    }
+    
+    .btn-close {
+      filter: invert(1);
+    }
+    
+    .modal-body img {
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #333;
+    }
+    
+    .modal-footer {
+      border-top: 1px solid #333;
+    }
+    
+    /* Show More Button */
+    .show-more-container {
+      text-align: center;
+      margin: 40px 0;
+    }
+    
+    .show-more-btn {
+      background: linear-gradient(135deg, #e60023, #8e0032);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .show-more-btn:hover {
+      background: linear-gradient(135deg, #c3001d, #660022);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.3);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .cards-container {
+        gap: 20px;
+      }
+      
+      .product-card {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+
+    /* Your original compare button styling */
+    .compare-section {
+      text-align: center;
+      margin: 60px 0;
+    }
+
+    .compare-btn {
+      background: linear-gradient(135deg, #e60023, #8e0032);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 50px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .compare-btn:hover {
+      background: linear-gradient(135deg, #c3001d, #660022);
+      transform: translateY(-2px);
+      color: black;
+    }
+
+    .compare-btn:focus,
+    .compare-btn:active {
+      outline: none !important;
+      box-shadow: none !important;
+      background: linear-gradient(135deg, #c3001d, #660022) !important;
+      color: white !important;
+    }

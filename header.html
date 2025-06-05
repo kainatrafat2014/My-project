@@ -1,0 +1,242 @@
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg w-100 m-0" style="background-color: black; z-index: 100;">
+  <div class="container-fluid px-3">
+    <!-- Brand Logo -->
+    <a class="navbar-brand brand-highlight no-hover d-flex align-items-center" href="#">
+      <span class="text-gracious">GRACIOUS</span>
+      <span class="text-separator">⚜</span>
+      <span class="text-garment">GARMENT</span>
+    </a>
+
+    <!-- Mobile Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon bg-light"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
+        <li class="nav-item mx-3">
+          <a class="nav-link active text-white" aria-current="page" href="index.html">HOME</a>
+        </li>
+        <li class="nav-item dropdown mx-3">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            BRAND
+          </a>
+          <ul class="dropdown-menu" style="background-color: black;">
+            <li><a class="dropdown-item text-white" href="bonanza.html">Bonanza Satrangi</a></li>
+            <li><a class="dropdown-item text-white" href="alkaram.html">Alkaram Studio</a></li>
+            <li><a class="dropdown-item text-white" href="sohaye.html">Sohaye By Diners</a></li>
+            <li><a class="dropdown-item text-white" href="saya.html">Saya</a></li>
+            <li><a class="dropdown-item text-white" href="j.html">J.</a></li>
+          </ul>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link text-white" href="aboutus.html">About Us</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link text-white" href="contactus.html">Contact us</a>
+        </li>
+      </ul>
+
+      <!-- Icons -->
+      <div class="d-flex align-items-center">
+        <div id="commentIcon" class="me-3" style="color: white; font-size: 22px; cursor: pointer;">
+          <i class="far fa-comment"></i>
+        </div>
+        <div id="cartIcon" style="color: white; font-size: 22px; cursor: pointer; position: relative;">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px; display: none;">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Side Panels -->
+<div id="cartPanel" class="side-panel">
+  <div class="side-panel-header">
+    <h4>Your Shopping Cart</h4>
+    <button class="close-panel">&times;</button>
+  </div>
+  <div class="side-panel-content">
+    <div class="empty-cart-message">
+      <i class="fas fa-shopping-cart fa-2x"></i>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="side-panel-footer">
+    <button class="checkout-btn">Proceed to Checkout</button>
+  </div>
+</div>
+
+<div id="commentPanel" class="side-panel">
+  <div class="side-panel-header">
+    <h4>Customer Comments</h4>
+    <button class="close-panel">&times;</button>
+  </div>
+  <div class="side-panel-content">
+    <div class="comment-form">
+      <textarea placeholder="Write your comment here..." rows="3"></textarea>
+      <button class="submit-comment">Submit</button>
+    </div>
+    <div class="comments-list"></div>
+  </div>
+</div>
+
+<!-- Overlay -->
+<div id="panelOverlay" class="panel-overlay"></div>
+
+<!-- Styles -->
+<style>
+  .brand-highlight {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  .text-gracious { color: #e60023; text-transform: uppercase; }
+  .text-garment { color: #ffffff; margin-left: 5px; text-transform: uppercase; }
+  .text-separator { font-size: 26px; color: gold; margin: 0 10px; text-shadow: 0 0 6px gold; }
+  .nav-link:hover, .dropdown-item:hover { color: red !important; background-color: transparent !important; }
+  .no-hover:hover { color: red !important; }
+  #commentIcon:hover, #cartIcon:hover { color: red !important; transition: color 0.3s; }
+
+  /* Panel Styles */
+  .side-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 380px;
+    height: 100vh;
+    background: linear-gradient(135deg, #8B0000 0%, #000000 100%);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    transition: right 0.3s ease-out;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  .side-panel.active { right: 0; }
+  .side-panel-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .side-panel-header h4 { margin: 0; font-weight: 600; }
+  .close-panel {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .side-panel-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  .empty-cart-message {
+    text-align: center;
+    padding: 40px 0;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .panel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+  }
+  @media (max-width: 576px) {
+    .side-panel { width: 90%; right: -100%; }
+  }
+</style>
+
+<!-- Required Libraries -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Fixed JavaScript -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Get elements
+    const cartIcon = document.getElementById("cartIcon");
+    const commentIcon = document.getElementById("commentIcon");
+    const cartPanel = document.getElementById("cartPanel");
+    const commentPanel = document.getElementById("commentPanel");
+    const overlay = document.getElementById("panelOverlay");
+    const closeButtons = document.querySelectorAll(".close-panel");
+
+    // Toggle panel function
+    function togglePanel(panelToOpen, panelToClose) {
+        if (panelToOpen.classList.contains("active")) {
+            // Close panel
+            panelToOpen.classList.remove("active");
+            overlay.style.display = "none";
+            document.body.style.overflow = "auto";
+        } else {
+            // Open panel
+            panelToClose.classList.remove("active");
+            panelToOpen.classList.add("active");
+            overlay.style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+    }
+
+    // Event listeners
+    cartIcon.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        togglePanel(cartPanel, commentPanel);
+    });
+
+    commentIcon.addEventListener("click", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        togglePanel(commentPanel, cartPanel);
+    });
+
+    // Close panels
+    closeButtons.forEach(button => {
+        button.addEventListener("click", function(e) {
+            e.stopPropagation();
+            cartPanel.classList.remove("active");
+            commentPanel.classList.remove("active");
+            overlay.style.display = "none";
+            document.body.style.overflow = "auto";
+        });
+    });
+
+    // Close when clicking overlay
+    overlay.addEventListener("click", function() {
+        cartPanel.classList.remove("active");
+        commentPanel.classList.remove("active");
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+    });
+
+    // Prevent closing when clicking inside panel
+    [cartPanel, commentPanel].forEach(panel => {
+        panel.addEventListener("click", function(e) {
+            e.stopPropagation();
+        });
+    });
+
+    // Initialize cart count
+    const cartCount = document.getElementById("cartCount");
+    const itemsInCart = 0; // Change to actual count
+    if(itemsInCart > 0) {
+        cartCount.style.display = "block";
+        cartCount.textContent = itemsInCart;
+    }
+});
+</script>

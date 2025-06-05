@@ -1,0 +1,153 @@
+<!-- My Footer -->
+<footer style="background: #2c2c2c; color: white; padding: 40px 20px;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: auto;">
+    
+    <!-- Customer Care -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h3>CUSTOMER CARE</h3>
+      <p>SHIPPING & HANDLING</p>
+      <p>EXCHANGE POLICY</p>
+      <p>ORDER CANCELLATION POLICY</p>
+      <p>PRIVACY POLICY</p>
+      <p>TERMS OF USE</p>
+      <p>FAQ'S</p>
+    </div>
+
+    <!-- Information -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h3>INFORMATION</h3>
+      <a href="index.html" class="info-link">> Home</a>
+      <a href="aboutus.html" class="info-link">> About us</a>
+      <a href="contactus.html" class="info-link">> Contact us</a>
+      <a href="#" class="info-link" data-bs-toggle="modal" data-bs-target="#feedbackModal">> Feedback</a>
+    </div>
+
+    <!-- Contact Us -->
+    <div style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+      <h3>Contact Us</h3>
+      <p><span>&#x1F4CD;</span> Aptech metro star gate, United States of Pakistan</p>
+      <p class="email-hover"><span>&#x2709;</span> kainatrafat6@gmail.com</p>
+      <p><span>&#x260E;</span> +92-3158966037</p>
+    </div>
+
+    <!-- Follow Us -->
+    <div style="flex: 1; min-width: 200px; margin-bottom: 20px;">
+      <h3>Follow Us</h3>
+      <div class="social-container">
+        <a href="https://facebook.com" class="social-icon" style="background-color: #3b5998;">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com" class="social-icon" style="background-color: #00acee;">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://google.com" class="social-icon" style="background-color: #db4437;">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="https://instagram.com" class="social-icon" style="background-color: #E1306C;">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://linkedin.com" class="social-icon" style="background-color: #0A66C2;">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://youtube.com" class="social-icon" style="background-color: #FF0000;">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Add Font Awesome CSS in head section -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<!-- Rest of your code remains the same -->
+<!-- Feedback Modal -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-color: #121212; color: white; border: 1px solid #e60023;">
+      <div class="modal-header" style="border-bottom: 1px solid #e60023;">
+        <h5 class="modal-title" style="color: #e60023;">Give Us Feedback</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="feedbackForm">
+          <div class="mb-3">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-control" style="background-color: #2c2c2c; color: white; border: 1px solid #444;" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Your Feedback</label>
+            <textarea class="form-control" rows="5" style="background-color: #2c2c2c; color: white; border: 1px solid #444;" required></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer" style="border-top: 1px solid #e60023;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" form="feedbackForm" class="btn btn-danger" style="background-color: #e60023;">Submit Feedback</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS file-->
+<style>
+  .info-link {
+    color: rgba(255, 255, 255, 0.699);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 8px;
+  }
+
+  .info-link:hover {
+    color: #e60023;
+    text-decoration: none;
+  }
+
+  .email-hover {
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .email-hover:hover {
+    color: #e60023;
+  }
+
+  .social-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 200px;
+  }
+
+  .social-icon {
+    width: 60px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .social-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+</style>
+
+<!-- JavaScript for Feedback -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you for your feedback!');
+    $('#feedbackModal').modal('hide');
+    this.reset();
+  });
+});
+</script>

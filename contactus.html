@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Gracious Garment</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary-red: #e60023;
+      --primary-dark-red: #8e0032;
+      --dark-bg: #121212;
+      --card-bg: #1e1e1e;
+      --text-light: #f8f9fa;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    /* Slide Animation */
+    .hero, .contact-card, .map-container {
+      animation: slideIn 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .hero {
+      animation-delay: 0.2s;
+    }
+
+    .contact-card {
+      animation-delay: 0.4s;
+    }
+
+    .map-container {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Updated hero section with exact compare page styling */
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+      margin: 0;
+      background: linear-gradient(135deg, #000000, var(--primary-dark-red));
+      border-bottom: 1px solid var(--primary-red);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--primary-red);
+      box-shadow: 0 0 15px var(--primary-red);
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: white;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .hero h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary-red);
+      box-shadow: 0 0 10px var(--primary-red);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.9);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Rest of your CSS remains exactly the same */
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(230, 0, 35, 0.1);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .form-control {
+      background-color: #2c2c2c;
+      border: 1px solid #444;
+      color: white;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-red);
+      box-shadow: 0 0 0 0.2rem rgba(230, 0, 35, 0.596);
+      background-color: #2c2c2c;
+      color: white;
+    }
+
+    .btn-danger {
+      background-color: var(--primary-red);
+      border: none;
+      font-weight: bold;
+      border-radius: 8px;
+      padding: 12px;
+      transition: all 0.3s;
+    }
+
+    .btn-danger:hover {
+      background-color: #c5001e;
+      transform: translateY(-2px);
+    }
+
+    .map-container {
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 60px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
+    .is-invalid {
+      border-color: #dc3545 !important;
+    }
+    
+    .invalid-feedback {
+      color: #dc3545;
+      font-size: 14px;
+    }
+    
+    .valid-feedback {
+      color: #28a745;
+      font-size: 14px;
+    }
+
+    .custom-alert {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #000000, var(--primary-red));
+      border: 1px solid var(--primary-red);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 1050;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      display: none;
+    }
+
+    .custom-alert h3 {
+      color: white;
+      font-size: 24px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--primary-red);
+      padding-bottom: 10px;
+    }
+
+    .custom-alert p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
+    .custom-alert-btn {
+      background-color: var(--primary-red);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .custom-alert-btn:hover {
+      background-color: #c5001e;
+      transform: translateY(-2px);
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 1040;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header"></div>
+
+  <!-- Custom Alert Box -->
+  <div class="overlay"></div>
+  <div class="custom-alert">
+    <h3>Thank You!</h3>
+    <p>Your message has been sent successfully. We'll get back to you soon.</p>
+    <button class="custom-alert-btn">OK</button>
+  </div>
+
+  <!-- Hero Section with exact compare page styling -->
+  <div class="hero">
+    <div class="container">
+      <h2>Let's Start a Conversation</h2>
+      <p>We're here to answer your questions and help you with anything you need.</p>
+    </div>
+  </div>
+
+  <!-- Rest of your HTML remains exactly the same -->
+  <section class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 contact-card">
+        <form id="contactForm" novalidate>
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+            <div class="invalid-feedback">Please enter a valid name (only letters and spaces)</div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            <div class="invalid-feedback">Please enter a valid email address</div>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+            <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Your Message</label>
+            <textarea class="form-control" id="message" rows="5" placeholder="Write your message" required minlength="10"></textarea>
+            <div class="invalid-feedback">Message must be at least 10 characters long</div>
+          </div>
+          <button type="submit" class="btn btn-danger w-100">
+            <i class="fas fa-paper-plane me-2"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14477.404922750114!2d67.12614527101513!3d24.89476014169467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb339d0f9de24f1%3A0x4f7b2456e68274a0!2sAptech%20Metro%20Star%20Gate%20Center!5e0!3m2!1sen!2s!4v1716104812345!5m2!1sen!2s"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer"></div>
+
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(function(){
+      $(".header").load("header.html");
+      $(".footer").load("footer.html");
+      
+      $(".custom-alert-btn").click(function() {
+        $(".custom-alert, .overlay").fadeOut();
+      });
+    });
+
+    (function() {
+      'use strict';
+      
+      const forms = document.querySelectorAll('.needs-validation');
+      
+      const nameRegex = /^[a-zA-Z\s]{3,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^\d{10}$/;
+      
+      const contactForm = document.getElementById('contactForm');
+      
+      contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        let isValid = true;
+        
+        const nameInput = document.getElementById('name');
+        if (!nameRegex.test(nameInput.value)) {
+          nameInput.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          nameInput.classList.remove('is-invalid');
+        }
+        
+        const emailInput = document.getElementById('email');
+        if (!emailRegex.test(emailInput.value)) {
+          emailInput.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          emailInput.classList.remove('is-invalid');
+        }
+        
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput.value && !phoneRegex.test(phoneInput.value)) {
+          phoneInput.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          phoneInput.classList.remove('is-invalid');
+        }
+        
+        const messageInput = document.getElementById('message');
+        if (messageInput.value.length < 10) {
+          messageInput.classList.add('is-invalid');
+          isValid = false;
+        } else {
+          messageInput.classList.remove('is-invalid');
+        }
+        
+        if (isValid) {
+          document.querySelector('.overlay').style.display = 'block';
+          document.querySelector('.custom-alert').style.display = 'block';
+          contactForm.reset();
+          contactForm.classList.remove('was-validated');
+        } else {
+          contactForm.classList.add('was-validated');
+        }
+      }, false);
+      
+      document.getElementById('name').addEventListener('input', function() {
+        if (nameRegex.test(this.value)) {
+          this.classList.remove('is-invalid');
+        }
+      });
+      
+      document.getElementById('email').addEventListener('input', function() {
+        if (emailRegex.test(this.value)) {
+          this.classList.remove('is-invalid');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

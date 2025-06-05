@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Comparison | Gracious Garment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --accent-color: #e60023;
+            --accent-dark: #8e0032;
+            --text-light: #f8f9fa;
+            --text-muted: #adb5bd;
+            --border-color: #333;
+            --card-bg: #121212;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* ========== HEADER SECTION ========== */
+        .section-heading {
+            text-align: center;
+            margin: 0;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #000000, var(--accent-dark));
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-heading::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-color);
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        .section-heading h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-heading h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .section-heading p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: rgba(255,255,255,0.9);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ========== COMPARISON TABLE ========== */
+        .comparison-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 20px;
+        }
+
+        .comparison-table {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-table th {
+            background-color: rgba(0,0,0,0.3);
+            color: var(--accent-color);
+            font-weight: 700;
+            padding: 1.5rem;
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 2px solid var(--border-color);
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .comparison-table th::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .comparison-table td {
+            padding: 1.8rem;
+            vertical-align: middle;
+            border-color: var(--border-color);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .comparison-table tr:hover td {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        /* ========== PRODUCT SELECT ========== */
+        .product-select {
+            background-color: rgba(0,0,0,0.3);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem 1.5rem;
+            width: 100%;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1rem;
+        }
+
+        .product-select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(230, 0, 35, 0.3);
+            outline: none;
+        }
+
+        /* ========== PRODUCT IMAGES ========== */
+        .product-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 15px;
+        }
+
+        .product-image {
+            max-width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            background-color: var(--secondary-bg);
+            padding: 10px;
+        }
+
+        .product-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-color);
+        }
+
+        /* ========== PRODUCT INFO ========== */
+        .product-brand {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .product-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: 0.5px;
+        }
+
+        .no-selection {
+            color: var(--text-muted);
+            font-style: italic;
+            font-weight: 300;
+            opacity: 0.7;
+        }
+
+        /* ========== MODAL STYLING ========== */
+        .comparison-modal .modal-content {
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-modal .modal-header {
+            border-bottom: 1px solid var(--accent-color);
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0,0,0,0.5), var(--accent-dark));
+        }
+
+        .comparison-modal .modal-body {
+            padding: 2rem;
+            background-color: var(--secondary-bg);
+        }
+
+        .comparison-modal .modal-footer {
+            border-top: 1px solid var(--accent-color);
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+        }
+
+        .modal-title {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== RESPONSIVE ADJUSTMENTS ========== */
+        @media (max-width: 992px) {
+            .section-heading h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-heading p {
+                font-size: 1rem;
+            }
+            
+            .comparison-table th, 
+            .comparison-table td {
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-heading {
+                padding: 3rem 0;
+            }
+            
+            .section-heading h2 {
+                font-size: 1.8rem;
+            }
+            
+            .product-image {
+                max-height: 200px;
+            }
+            
+            .product-brand {
+                font-size: 1rem;
+            }
+            
+            .product-price {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .comparison-table tbody tr {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .comparison-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        .comparison-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+        .comparison-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+        .comparison-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <!-- Updated heading with enhanced styling -->
+    <div class="section-heading">
+        <div class="container">
+            <h2>Product Comparison</h2>
+            <p>Compare two products side by side</p>
+        </div>
+    </div>
+
+    <div class="comparison-container">
+        <div class="table-responsive comparison-table">
+            <table class="table table-dark table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th width="25%">Features</th>
+                        <th width="37.5%">
+                            <select class="product-select" id="select1" onchange="item1(this.value)">
+                                <option value="0">Select Product 1</option>
+                            </select>
+                        </th>
+                        <th width="37.5%">
+                            <select class="product-select" id="select2" onchange="item2(this.value)">
+                                <option value="0">Select Product 2</option>
+                            </select>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Product Image</th>
+                        <td><div class="product-image-container"><img src="Images/no-image.png" alt="No selection" class="product-image" id="img1"></div></td>
+                        <td><div class="product-image-container"><img src="Images/no-image.png" alt="No selection" class="product-image" id="img2"></div></td>
+                    </tr>
+                    <tr>
+                        <th>Brand</th>
+                        <td id="brand1" class="no-selection">Not selected</td>
+                        <td id="brand2" class="no-selection">Not selected</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td id="description1" class="no-selection">Not selected</td>
+                        <td id="description2" class="no-selection">Not selected</td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td id="price1" class="no-selection">Not selected</td>
+                        <td id="price2" class="no-selection">Not selected</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <!-- Comparison Modal -->
+    <div class="modal fade comparison-modal" id="comparisonModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Comparison Notice</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Please select two different products for comparison.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/data2.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            $('#header').load('header.html');
+            $('#footer').load('footer.html');
+        });
+
+        // Populate dropdowns
+        for(var i = 1; i < products.length; i++) {
+            const priceFormatted = products[i].Price.startsWith('Rs.') ? products[i].Price : 'Rs. ' + products[i].Price;
+            const optionText = `${products[i].Brand} - ${priceFormatted}`;
+                
+            document.getElementById("select1").innerHTML += 
+                `<option value="${i}">${optionText}</option>`;
+            
+            document.getElementById("select2").innerHTML += 
+                `<option value="${i}">${optionText}</option>`;
+        }
+
+        function updateProductInfo(column, index) {
+            const product = products[index];
+            const prefix = column === 1 ? '1' : '2';
+            
+            document.getElementById(`img${prefix}`).src = product.image || "Images/no-image.png";
+            document.getElementById(`brand${prefix}`).innerHTML = product.Brand;
+            document.getElementById(`brand${prefix}`).className = 'product-brand';
+            document.getElementById(`description${prefix}`).innerHTML = product.Description;
+            document.getElementById(`description${prefix}`).className = 'product-description';
+            
+            const priceFormatted = product.Price.startsWith('Rs.') ? product.Price : 'Rs. ' + product.Price;
+            document.getElementById(`price${prefix}`).innerHTML = priceFormatted;
+            document.getElementById(`price${prefix}`).className = 'product-price';
+        }
+
+        function resetColumn(column) {
+            const prefix = column === 1 ? '1' : '2';
+            
+            document.getElementById(`img${prefix}`).src = "Images/no-image.png";
+            document.getElementById(`brand${prefix}`).innerHTML = "Not selected";
+            document.getElementById(`brand${prefix}`).className = 'no-selection';
+            document.getElementById(`description${prefix}`).innerHTML = "Not selected";
+            document.getElementById(`description${prefix}`).className = 'no-selection';
+            document.getElementById(`price${prefix}`).innerHTML = "Not selected";
+            document.getElementById(`price${prefix}`).className = 'no-selection';
+        }
+
+        function item1(a) {
+            const s2 = document.getElementById("select2").value;
+            if(a != "0" && a != s2) {
+                updateProductInfo(1, a);
+            } else if(a == s2) {
+                const modal = new bootstrap.Modal(document.getElementById('comparisonModal'));
+                modal.show();
+                document.getElementById("select1").value = "0";
+                resetColumn(1);
+            } else {
+                resetColumn(1);
+            }
+        }
+
+        function item2(a) {
+            const s1 = document.getElementById("select1").value;
+            if(a != "0" && a != s1) {
+                updateProductInfo(2, a);
+            } else if(a == s1) {
+                const modal = new bootstrap.Modal(document.getElementById('comparisonModal'));
+                modal.show();
+                document.getElementById("select2").value = "0";
+                resetColumn(2);
+            } else {
+                resetColumn(2);
+            }
+        }
+    </script>
+</body>
+</html>
